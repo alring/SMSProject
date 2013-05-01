@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentionLayer", "SMSProject\PresentionLayer.csproj", "{CC82072C-7503-41BD-9011-AB48881708C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicLayer", "LogicLayer\LogicLayer.csproj", "{99C11CFB-F7A5-40F0-AC5F-BCE61CB13D09}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SMSProjectSetup_VS", "SMSProjectSetup_VS\SMSProjectSetup_VS.vdproj", "{425810B2-2684-4E01-B9EB-27D66C14BCE3}"
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = SMSProject.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		CD_ROM|Any CPU = CD_ROM|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		DVD-5|Any CPU = DVD-5|Any CPU
+		Release|Any CPU = Release|Any CPU
+		SingleImage|Any CPU = SingleImage|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CC82072C-7503-41BD-9011-AB48881708C8}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{CC82072C-7503-41BD-9011-AB48881708C8}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{CC82072C-7503-41BD-9011-AB48881708C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC82072C-7503-41BD-9011-AB48881708C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC82072C-7503-41BD-9011-AB48881708C8}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC82072C-7503-41BD-9011-AB48881708C8}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{CC82072C-7503-41BD-9011-AB48881708C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC82072C-7503-41BD-9011-AB48881708C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC82072C-7503-41BD-9011-AB48881708C8}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{CC82072C-7503-41BD-9011-AB48881708C8}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{99C11CFB-F7A5-40F0-AC5F-BCE61CB13D09}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{99C11CFB-F7A5-40F0-AC5F-BCE61CB13D09}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{99C11CFB-F7A5-40F0-AC5F-BCE61CB13D09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99C11CFB-F7A5-40F0-AC5F-BCE61CB13D09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99C11CFB-F7A5-40F0-AC5F-BCE61CB13D09}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{99C11CFB-F7A5-40F0-AC5F-BCE61CB13D09}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{99C11CFB-F7A5-40F0-AC5F-BCE61CB13D09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99C11CFB-F7A5-40F0-AC5F-BCE61CB13D09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99C11CFB-F7A5-40F0-AC5F-BCE61CB13D09}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{99C11CFB-F7A5-40F0-AC5F-BCE61CB13D09}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{425810B2-2684-4E01-B9EB-27D66C14BCE3}.CD_ROM|Any CPU.ActiveCfg = Release
+		{425810B2-2684-4E01-B9EB-27D66C14BCE3}.CD_ROM|Any CPU.Build.0 = Release
+		{425810B2-2684-4E01-B9EB-27D66C14BCE3}.Debug|Any CPU.ActiveCfg = Debug
+		{425810B2-2684-4E01-B9EB-27D66C14BCE3}.DVD-5|Any CPU.ActiveCfg = Debug
+		{425810B2-2684-4E01-B9EB-27D66C14BCE3}.DVD-5|Any CPU.Build.0 = Debug
+		{425810B2-2684-4E01-B9EB-27D66C14BCE3}.Release|Any CPU.ActiveCfg = Release
+		{425810B2-2684-4E01-B9EB-27D66C14BCE3}.SingleImage|Any CPU.ActiveCfg = Release
+		{425810B2-2684-4E01-B9EB-27D66C14BCE3}.SingleImage|Any CPU.Build.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		VisualSVNWorkingCopyRoot = .
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,367 @@
+﻿<Window x:Class="SMSProject.Window1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Window1" Height="500" Width="500" Loaded="Window_Loaded">
+    <Window.Resources>
+        <Style TargetType="TextBlock" x:Key="StyleForTextBlock1">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Margin" Value="5,0"/>
+        </Style>
+
+        <Style BasedOn="{StaticResource StyleForTextBlock1}"  x:Key="StyleForTextBlock2" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+        <Style TargetType="ComboBox" x:Key="StyleForComboBox">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="Margin" Value="5,0"/>
+        </Style>
+
+        <Style TargetType="Button" x:Key="StyleForButton">
+            <Setter Property="Width" Value="70"/>
+            <Setter Property="Height" Value="25"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+
+
+        <TabControl>
+            <TabItem Header="Connect">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Row="0" Style="{StaticResource StyleForTextBlock2}">Port name:</TextBlock>
+                    <ComboBox Name="ComboBoxPort" Grid.Row="0" Grid.Column="1" Style="{StaticResource StyleForComboBox}"
+                      SelectionChanged="ComboBoxPort_SelectionChanged"></ComboBox>
+
+                    <TextBlock Grid.Row="1" Style="{StaticResource StyleForTextBlock2}">Data bit:</TextBlock>
+                    <ComboBox Name="ComboBoxDataBits" Grid.Row="1" Grid.Column="1" Style="{StaticResource StyleForComboBox}"
+                      SelectionChanged="ComboBoxDataBits_SelectionChanged"></ComboBox>
+
+                    <TextBlock Grid.Row="2" Style="{StaticResource StyleForTextBlock2}">Parity:</TextBlock>
+                    <ComboBox Name="ComboBoxParity" Grid.Row="2" Grid.Column="1" Style="{StaticResource StyleForComboBox}"
+                      SelectionChanged="ComboBoxParity_SelectionChanged"></ComboBox>
+
+                    <TextBlock Grid.Row="3" Style="{StaticResource StyleForTextBlock2}">Stop bit:</TextBlock>
+                    <ComboBox Name="ComboBoxStopBits" Grid.Row="3" Grid.Column="1" Style="{StaticResource StyleForComboBox}"
+                      SelectionChanged="ComboBoxStopBits_SelectionChanged"></ComboBox>
+
+                    <TextBlock Grid.Row="4" Style="{StaticResource StyleForTextBlock2}">Baud rate:</TextBlock>
+                    <ComboBox Name="ComboBoxBaudRate" Grid.Row="4" Grid.Column="1" Style="{StaticResource StyleForComboBox}"
+                      SelectionChanged="ComboBoxBaudRate_SelectionChanged"></ComboBox>
+
+                    <TextBlock Grid.Row="5" Style="{StaticResource StyleForTextBlock2}">Read timeout:</TextBlock>
+                    <ComboBox Name="ComboBoxReadTimeout" Grid.Row="5" Grid.Column="1" Style="{StaticResource StyleForComboBox}"
+                      SelectionChanged="ComboBoxReadTimeout_SelectionChanged"></ComboBox>
+
+                    <TextBlock Grid.Row="6" Style="{StaticResource StyleForTextBlock2}">Write timeout:</TextBlock>
+                    <ComboBox Name="ComboBoxWriteTimeout" Grid.Row="6" Grid.Column="1" Style="{StaticResource StyleForComboBox}"
+                      SelectionChanged="ComboBoxWriteTimeout_SelectionChanged"></ComboBox>
+
+                    <Grid Grid.Row="7" Grid.ColumnSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Style="{StaticResource StyleForButton}" Margin="10,0" Grid.Column="0"
+                Name="ButtonConnect" Click="ButtonConnect_Click" MouseEnter="ButtonConnect_MouseEnter">Connect</Button>
+                        <Button Style="{StaticResource StyleForButton}" Content="Test"  Margin="10,0" Name="ButtonTestConnection" 
+                                Click="ButtonTestConnection_Click" Grid.Column="1">
+                            <Button.ToolTip>
+                                <TextBlock>Test AT Commands</TextBlock>
+                            </Button.ToolTip>
+                        </Button>
+                    </Grid>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Test">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+
+                    <ScrollViewer>
+                        <StackPanel Name="StackPanelAllTestOutput" Margin="5"></StackPanel>
+                    </ScrollViewer>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Content="Run"  Style="{StaticResource StyleForButton}" Name="ButtonRunAllTests"
+                            Click="ButtonRunAllTests_Click" >
+                            <Button.ToolTip>
+                                <TextBlock>Test the device to figure out supported AT Commnads</TextBlock>
+                            </Button.ToolTip>
+                        </Button>
+                        
+                        <Button Name="ButtonClear" Style="{StaticResource StyleForButton}" 
+                                Click="ButtonClear_Click" Grid.Column="1">Clear</Button>
+                    </Grid>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Information">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Style="{StaticResource StyleForTextBlock2}">Manufacturer:</TextBlock>
+                    <TextBlock Style="{StaticResource StyleForTextBlock1}" 
+                               Name="TextBlockManufacturer" Grid.Column="1"></TextBlock>
+
+                    <TextBlock Style="{StaticResource StyleForTextBlock2}" Grid.Row="1">Model:</TextBlock>
+                    <TextBlock Style="{StaticResource StyleForTextBlock1}" Grid.Row="1" 
+                               Name="TextBlockModel" Grid.Column="1"></TextBlock>
+
+                    <TextBlock Style="{StaticResource StyleForTextBlock2}" Grid.Row="2">IMEI:</TextBlock>
+                    <TextBlock Style="{StaticResource StyleForTextBlock1}" Grid.Row="2" 
+                               Name="TextBlockIMEI" Grid.Column="1"></TextBlock>
+
+                    <TextBlock Style="{StaticResource StyleForTextBlock2}" Grid.Row="3">Firmware:</TextBlock>
+                    <TextBlock Style="{StaticResource StyleForTextBlock1}" Grid.Row="3" 
+                               Name="TextBlockFirmware" Grid.Column="1"></TextBlock>
+
+                    <TextBlock Style="{StaticResource StyleForTextBlock2}" Grid.Row="4">Signal:</TextBlock>
+                    <TextBlock Style="{StaticResource StyleForTextBlock1}" Grid.Row="4" 
+                               Name="TextBlockSignal" Grid.Column="1"></TextBlock>
+
+                    <TextBlock Style="{StaticResource StyleForTextBlock2}" Grid.Row="5">Battery:</TextBlock>
+                    <TextBlock Style="{StaticResource StyleForTextBlock1}" Grid.Row="5" 
+                               Name="TextBlockBattery" Grid.Column="1"></TextBlock>
+
+                    <Grid Grid.Row="6" Grid.ColumnSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Style="{StaticResource StyleForButton}" Name="ButtonGetAllInformation" 
+                            Click="ButtonGetAllInformation_Click" >Show</Button>
+                        
+                        <Button Style="{StaticResource StyleForButton}" Name="ButtonClearInfo" Grid.Column="1"
+                                Click="ButtonClearInfo_Click">Clear</Button>
+                    </Grid>
+
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Send - TEXT Mode">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.12*"/>
+                        <RowDefinition Height="0.12*"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="80"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Style="{StaticResource StyleForTextBlock2}">Service Center:</TextBlock>
+                        <TextBox Name="TextBoxServiceCenter" Grid.Column="1"
+                                 VerticalAlignment="Center" HorizontalAlignment="Stretch"></TextBox>
+                        <Button Name="ButtonGetCurrentServiceCenter" Content="Get" Grid.Column="2"
+                                Style="{StaticResource StyleForButton}" Click="ButtonGetCurrentServiceCenter_Click">
+                            <Button.ToolTip>
+                                <TextBox>
+                                    Get Current Service Center
+                                </TextBox>
+                            </Button.ToolTip>
+                        </Button>
+                        <Button Name="ButtonSetServiceCenter" Content="Set" Grid.Column="3" Click="ButtonSetServiceCenter_Click"
+                                Style="{StaticResource StyleForButton}">
+                            <Button.ToolTip>
+                                <TextBox>Change Service Center</TextBox>
+                            </Button.ToolTip>
+                        </Button>
+
+                    </Grid>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="80"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Style="{StaticResource StyleForTextBlock2}">Mobile Number:</TextBlock>
+                        <TextBox Name="TextBoxNumber" Grid.Column="1"
+                                 VerticalAlignment="Center" HorizontalAlignment="Stretch"></TextBox>
+
+                    </Grid>
+                    
+                    <TextBox Name="TextBoxSMSContent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                             Margin="10" Grid.Row="2" AcceptsReturn="True" TextWrapping="Wrap">
+                        
+                    </TextBox>
+                    
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Button Style="{StaticResource StyleForButton}" Grid.Column="0" Name="ButtonSend" Click="ButtonSend_Click">Send</Button>
+                    </Grid>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Send - PDU">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+                    
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <TextBlock Style="{StaticResource StyleForTextBlock2}">Phone Number:</TextBlock>
+
+                        <TextBox Name="TextBoxPhoneNumberPDU" Margin="5,0" Grid.Column="1"
+                                     VerticalAlignment="Center" HorizontalAlignment="Stretch"></TextBox>
+                    </Grid>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Style="{StaticResource StyleForTextBlock2}">Validity Period:</TextBlock>
+                        <ComboBox Name="ComboBoxValidityPeriodPDU" Grid.Column="1" Margin="5,0"
+                                 VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                            <ComboBoxItem>1 Hour</ComboBoxItem>
+                            <ComboBoxItem>6 Hours</ComboBoxItem>
+                            <ComboBoxItem>12 Hours</ComboBoxItem>
+                            <ComboBoxItem IsSelected="True">24 Hours</ComboBoxItem>
+                            <ComboBoxItem>3 Days</ComboBoxItem>
+                            <ComboBoxItem>1 Week</ComboBoxItem>
+                            <ComboBoxItem>Max</ComboBoxItem>
+                        </ComboBox>
+                    </Grid>
+
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <CheckBox Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Name="CheckBoxReplyPathExist">Reply path exists</CheckBox>
+                        <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Name="CheckBoxRequestDeliveryReport">Request delivery report</CheckBox>
+                        <CheckBox Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Name="CheckBoxFlashSMS">Flash SMS</CheckBox>
+                    </Grid>
+                    
+                    <TextBox Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextWrapping="Wrap"
+                             Margin="5" AcceptsReturn="True" Name="TextBoxSMSContentPDU"></TextBox>
+
+                    <TextBox Grid.Row="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextWrapping="Wrap"
+                             Margin="5" Name="TextBoxShowPDU" IsReadOnly="True" IsReadOnlyCaretVisible="False" Background="LightGray"></TextBox>
+
+                    <Grid Grid.Row="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Style="{StaticResource StyleForButton}" Grid.Column="0" Name="ButtonShowPDU" Click="ButtonShowPDU_Click">Show PDU</Button>
+                        <Button Style="{StaticResource StyleForButton}" Grid.Column="1" Name="ButtonSendPDU" Click="ButtonSendPDU_Click">Send</Button>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            
+            <TabItem Header="Terminal">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox x:Name="TextBoxInput" Margin="5"></TextBox>
+                        <Button x:Name="ButtonInput" Style="{StaticResource StyleForButton}" Margin="5"
+                                Grid.Column="1" IsDefault="True" Click="ButtonInput_Click">Enter</Button>
+                    </Grid>
+
+                    <TextBox x:Name="TextBoxOutput" Grid.Row="1" IsReadOnly="True"></TextBox>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+        <StatusBar Grid.Row="2">
+            <TextBlock Name="TextBlockStatusBar" VerticalAlignment="Center" HorizontalAlignment="Stretch"
+                       FontWeight="Bold"></TextBlock>
+        </StatusBar>
+    </Grid>
+</Window>
